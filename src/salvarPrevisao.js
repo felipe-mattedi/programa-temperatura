@@ -25,7 +25,12 @@ const disconnect = async () => {
 
 // setar schema e modelo
 
-const schemaPrevisao = new Schema({ cidade: String, temp_c: Number });
+const schemaPrevisao = new Schema({
+  cidade: String,
+  data: String,
+  min: Number,
+  max: Number,
+});
 const Previsao = mongoose.model("Previsao", schemaPrevisao);
 
 // savar dados no mongo
