@@ -1,0 +1,22 @@
+{
+  "name": "programa-temperatura",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipe-mattedi/programa-temperatura.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "axios": "^0.21.1",
+    "dotenv": "^10.0.0",
+    "mongoose": "^5.13.0",
+    "readline-sync": "^1.4.10"
+  }
+}
