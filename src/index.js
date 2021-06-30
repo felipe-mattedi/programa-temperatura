@@ -2,6 +2,7 @@
 
 import input from 'readline-sync'
 import consultaWeather from './downloadInfo.js'
+import salvarPrevisao from './salvarPrevisao.js'
 
 function msginicializacao(){
   console.log(`
@@ -36,28 +37,35 @@ function validadias(){
 
 msginicializacao()
 
-try{
+async function main() {
 
-  let cidade = validacidade()
-  let qtd = validadias()
-  let retorno = await consultaWeather(cidade,qtd)
-  console.log(resultado)
+  try{
+  
+    let cidade = validacidade()
+    let qtd = validadias()
+    let retorno = await consultaWeather(cidade,qtd)
+    await salvarPrevisao(retorno)
+    console.log(retorno)
+  
+  }
+  
+  catch(e) {
+    console.log(`
+    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+    Erro durante a execução do programa:
+    ${e.message}
+    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+    `)
+  }
+  
+  finally{
+    console.log(`
+    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+    Termino da execucao do programa
+    *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
+    `)
+  }
 
 }
 
-catch(e) {
-  console.log(`
-  *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-  Erro durante a execução do programa:
-  ${e.message}
-  *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-  `)
-}
-
-finally{
-  console.log(`
-  *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-  Termino da execucao do programa
-  *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
-  `)
-}
+main()
