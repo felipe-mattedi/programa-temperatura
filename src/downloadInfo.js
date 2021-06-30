@@ -6,7 +6,7 @@ dotenv.config()
 const api = process.env.APIKEY
 const url = process.env.URL
 
-export async function consultaWeather(cidade,dias){
+export const consultaWeather = async (cidade,dias) => {
     try{
     console.log('iniciando consulta')
     console.log(url+api+'&q='+cidade+'&days='+dias)
@@ -23,6 +23,8 @@ export async function consultaWeather(cidade,dias){
         }
         return previsao
     } catch (err) {
-        console.log('DEU ERRO AQUI',err)
+        throw new Error(err)
     }
 }
+
+export default consultaWeather
