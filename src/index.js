@@ -1,6 +1,7 @@
 ///*teste*////
 
 import input from 'readline-sync'
+import consultaWeather from './downloadInfo.js'
 
 function msginicializacao(){
   console.log(`
@@ -33,13 +34,14 @@ function validadias(){
   }
 }
 
-
 msginicializacao()
 
 try{
 
   let cidade = validacidade()
   let qtd = validadias()
+  let retorno = await consultaWeather(cidade,qtd)
+  console.log(resultado)
 
 }
 
