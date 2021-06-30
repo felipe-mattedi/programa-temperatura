@@ -8,8 +8,6 @@ const url = process.env.URL
 
 export const consultaWeather = async (cidade,dias) => {
     try{
-    console.log('iniciando consulta')
-    console.log(url+api+'&q='+cidade+'&days='+dias)
     let previsao =[]
     let consulta = await axios.get(url+api+'&q='+cidade+'&days='+dias)
     for (let i = 0; i < consulta.data.forecast.forecastday.length; i++) {
