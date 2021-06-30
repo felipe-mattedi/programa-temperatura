@@ -1,4 +1,4 @@
-import { MONGO_URL } from "./config.js";
+import { MONGO_URL } from "../config.js";
 import mongoose from "mongoose";
 const { Schema } = mongoose;
 
@@ -47,10 +47,12 @@ const salvarPrevisaoNoMongo = async (previsaoTempo) => {
 
 // funcao principal
 
-const salvarPrevisao = async (previsaoTempo) => {
+const salvarPrevisao = async (arrayPrevisoes) => {
   try {
     await connect();
-    await salvarPrevisaoNoMongo(previsaoTempo);
+    for (let element of arrayPrevisoes) {
+      await salvarPrevisaoNoMongo(element);
+    }
     console.log("Tudo ok!!!");
   } catch (err) {
     throw new Error(err);
