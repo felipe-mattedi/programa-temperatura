@@ -17,6 +17,8 @@
     "axios": "^0.21.1",
     "dotenv": "^10.0.0",
     "mongoose": "^5.13.0",
+    "pino": "^6.11.3",
+    "pino-pretty": "^5.1.0",
     "readline-sync": "^1.4.10"
   },
   "devDependencies": {

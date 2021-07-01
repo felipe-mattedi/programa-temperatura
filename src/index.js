@@ -1,7 +1,13 @@
 /* eslint-disable import/extensions */
 import input from 'readline-sync';
+import dotenv from 'dotenv';
 import downloadInfo from './downloadInfo.js';
 import salvarPrevisao from './salvarPrevisao.js';
+import logger from './logger.js';
+
+dotenv.config();
+
+const entradaUsuario = process.env.ESPERAENTRADA;
 
 function msginicializacao() {
   console.log(`
@@ -30,15 +36,12 @@ function validadias() {
   }
 }
 
-msginicializacao();
-
-async function main() {
+async function executaPrograma(cidadeInformada, diasInformados) {
   try {
-    const cidade = validacidade();
-    const qtd = validadias();
-    const retorno = await downloadInfo(cidade, qtd);
+    const retorno = await downloadInfo(cidadeInformada, diasInformados);
     await salvarPrevisao(retorno);
     console.log(retorno);
+    logger.info({ cidadeInformada, diasInformados }, 'Dados salvos com sucesso!');
   } catch (e) {
     console.log(`
     *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
@@ -53,6 +56,20 @@ async function main() {
     *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
     `);
   }
+}
+
+async function main() {
+  msginicializacao();
+  let cidade; let
+    qtd;
+  if (entradaUsuario === '1') {
+    cidade = validacidade();
+    qtd = validadias();
+  } else {
+    cidade = 'Pindamonhangaba';
+    qtd = '2';
+  }
+  executaPrograma(cidade, qtd);
 }
 
 main();
