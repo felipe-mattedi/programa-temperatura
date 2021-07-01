@@ -3,6 +3,7 @@
 import input from 'readline-sync'
 import consultaWeather from './downloadInfo.js'
 import salvarPrevisao from './salvarPrevisao.js'
+import { logger } from "./logger.js";
 
 function msginicializacao(){
   console.log(`
@@ -46,6 +47,7 @@ async function main() {
     let retorno = await consultaWeather(cidade,qtd)
     await salvarPrevisao(retorno)
     console.log(retorno)
+    logger.info({cidade, qtd}, 'Dados salvos com sucesso!')
   
   }
   
