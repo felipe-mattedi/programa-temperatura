@@ -1,8 +1,10 @@
-import pino from "pino";
+import pino from 'pino';
 
-export const logger = pino({
+const logger = pino({
   prettyPrint: {
     levelFirst: true,
-    colorize: true
-  }
+    colorize: true,
+  },
 });
+
+export default logger;
