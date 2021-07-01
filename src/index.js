@@ -1,6 +1,4 @@
-///*teste*////
-
-import input from 'readline-sync'
+import input from 'readline-sync';
 import consultaWeather from './downloadInfo.js'
 import salvarPrevisao from './salvarPrevisao.js'
 import { logger } from "./logger.js";
