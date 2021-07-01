@@ -1,11 +1,15 @@
 import input from 'readline-sync';
 import consultaWeather from './downloadInfo.js'
 import salvarPrevisao from './salvarPrevisao.js'
+<<<<<<< HEAD
+import { logger } from "./logger.js";
+=======
 import dotenv from 'dotenv'
 
 dotenv.config()
 
 const entradaUsuario=process.env.ESPERAENTRADA
+>>>>>>> developer
 
 function msginicializacao(){
   console.log(`
@@ -43,6 +47,11 @@ async function executaPrograma(cidadeInformada, diasInformados){
     let retorno = await consultaWeather(cidadeInformada,diasInformados)
     await salvarPrevisao(retorno)
     console.log(retorno)
+<<<<<<< HEAD
+    logger.info({cidade, qtd}, 'Dados salvos com sucesso!')
+  
+=======
+>>>>>>> developer
   }
   
   catch(e) {
