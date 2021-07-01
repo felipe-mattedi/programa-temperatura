@@ -3,6 +3,11 @@
 import input from 'readline-sync'
 import consultaWeather from './downloadInfo.js'
 import salvarPrevisao from './salvarPrevisao.js'
+import dotenv from 'dotenv'
+
+dotenv.config()
+
+const entradaUsuario=process.env.ESPERAENTRADA
 
 function msginicializacao(){
   console.log(`
@@ -35,18 +40,11 @@ function validadias(){
   }
 }
 
-msginicializacao()
-
-async function main() {
-
+async function executaPrograma(cidadeInformada, diasInformados){
   try{
-  
-    let cidade = validacidade()
-    let qtd = validadias()
-    let retorno = await consultaWeather(cidade,qtd)
+    let retorno = await consultaWeather(cidadeInformada,diasInformados)
     await salvarPrevisao(retorno)
     console.log(retorno)
-  
   }
   
   catch(e) {
@@ -65,7 +63,19 @@ async function main() {
     *=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*=*
     `)
   }
+}
 
+async function main() {
+  msginicializacao()
+  let cidade, qtd
+  if(entradaUsuario === '1'){
+      cidade = validacidade()
+      qtd = validadias()
+    } else {
+      cidade = 'Pindamonhangaba'
+      qtd = '2'
+    }
+    executaPrograma(cidade, qtd)
 }
 
 main()
