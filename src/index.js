@@ -30,8 +30,8 @@ function validacidade() {
 }
 
 function validadias() {
-  const qtd = input.question('Digite a quantidade de dias (1 ate 7): ');
-  if (Number(qtd).isNaN() || Number(qtd) < 1 || Number(qtd) > 3) {
+  const qtd = Number(input.question('Digite a quantidade de dias (1 ate 7): '));
+  if (Number(qtd) < 1 || Number(qtd) > 3) {
     throw new Error('Digite uma quantidade de dias válida');
   }
 }
@@ -60,8 +60,8 @@ async function executaPrograma(cidadeInformada, diasInformados) {
 
 async function main() {
   msginicializacao();
-  let cidade; let
-    qtd;
+  let cidade;
+  let qtd;
   if (entradaUsuario === '1') {
     cidade = validacidade();
     qtd = validadias();
